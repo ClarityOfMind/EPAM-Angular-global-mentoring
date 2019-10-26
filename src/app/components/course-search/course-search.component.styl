@@ -1,0 +1,38 @@
+.icon-search:before {
+    content: "\e986";
+}
+
+.search {
+    position: relative;
+
+    &__input {
+        width: 360px;
+        height: 48px;
+        border-radius: 3px;
+        border: 1px solid var(--light-gray);
+        margin-right: 6px;
+        padding-left: 42px;
+
+        &::placeholder {
+            color: var(--silver);
+            font-size: 14px;
+
+        }
+    }
+
+    &__button {
+        font-size: 18px
+        width: 100px;
+        height: 48px;
+    }
+
+    &:before {
+        content: '\e800';
+        font-family: fontello;
+        position: absolute;
+        left:12px;
+        top: 12px;
+        font-size: 24px;
+        color: var(--steel);
+    }
+}

@@ -1,0 +1,54 @@
+.button {
+    position: relative;
+    font-weight: 600;
+    color: var(--white);
+    border-radius: 3px;
+    border: none;
+
+    &--green {
+        background-color: var(--sick-green);
+    }
+
+    &--blue {
+        background-color: var(--dark-sky-blue);
+    }
+
+    &--large {
+        padding: 9px 24px 9px 18px;
+        font-size:  14px;
+    }
+
+    &--medium {
+        padding: 4px 18px 4px 15px;
+        font-size:  12px;
+        font-weight: 400;
+    }
+
+    &__add {
+        &:before {
+            content: "\e801";
+            font-family: fontello;
+            margin-right: 12px;
+        }
+    }
+
+    &__edit {
+        &:before {
+            content: "\e806";
+            font-family: fontello;
+            margin-right: 8px;
+        }
+    }
+
+    &__delete {
+        &:before {
+            content: "\e807";
+            font-family: fontello;
+            margin-right: 8px;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

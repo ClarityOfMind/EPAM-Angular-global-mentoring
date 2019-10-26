@@ -1,0 +1,38 @@
+.header {
+    width: 100%;
+    height: 64px;
+    background-color: var(--mako);
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__login {
+        width: 180px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        color: var(--white)
+    }
+
+    &__login-user:before {
+        content: '\e802';
+        font-family: fontello;
+        margin-right: 9px;
+    }
+
+    &__logoff-button {
+        background-color: transparent;
+        padding: 8px;
+
+        &:before {
+            content: '\e803';
+            font-family: fontello;
+            margin-right: 9px;
+        }
+    }
+}

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-logo',
   templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.styl']
+  styleUrls: ['./logo.component.styl'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LogoComponent implements OnInit {
 

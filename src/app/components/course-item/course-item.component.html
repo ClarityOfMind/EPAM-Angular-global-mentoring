@@ -1,0 +1,17 @@
+<div class="course-item">
+    <div class="course-item__info">
+        <div class="course-item__row">
+            <h2>{{course.title}}</h2>
+
+            <div class="course-item__app">
+                <span class="course-item__duration">{{course.duration}}</span>
+                <span class="course-item__date">{{course.creationDate}}</span>
+            </div>
+        </div>
+        <p class="course-item__description">{{course.description}}</p>
+    </div>
+    <div class="course-item__actions">
+        <button class="button button--medium button--blue button__edit">Edit</button>
+        <button class="button button--medium button--blue button__delete" (click)="delete()">Delete</button>
+    </div>
+</div>
