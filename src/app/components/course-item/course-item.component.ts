@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Course } from '../../interfaces/course';
-import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-course-item',
@@ -19,7 +19,7 @@ export class CourseItemComponent implements OnInit {
     ngOnInit() {
     }
 
-    public delete(): void {
+    public deleteItem(): void {
         this.deleteCourse.emit(this.course.id);
     }
 }

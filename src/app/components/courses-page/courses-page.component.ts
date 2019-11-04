@@ -29,6 +29,7 @@ export class CoursesPageComponent implements
     AfterViewChecked,
     OnDestroy {
     public courses: Course[];
+    public id: string;
 
     constructor() {
         console.log('constructor');
