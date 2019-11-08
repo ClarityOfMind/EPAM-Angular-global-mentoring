@@ -1,3 +1,4 @@
+
 import {
     Component,
     ViewEncapsulation,
@@ -12,6 +13,7 @@ import {
 
 } from '@angular/core';
 import { Course } from '../../interfaces/course';
+import { FilterPipe } from '../../pipes/filter-pipe/filter.pipe';
 
 
 @Component({
@@ -30,8 +32,9 @@ export class CoursesPageComponent implements
     OnDestroy {
     public courses: Course[];
     public id: string;
+    public list: Course[];
 
-    constructor() {
+    constructor(private filterPipe: FilterPipe) {
         console.log('constructor');
     }
 
@@ -39,27 +42,31 @@ export class CoursesPageComponent implements
         this.courses = [
             {
                 id: '1',
-                title: 'Video Course 1. Name tag',
-                creationDate: '9 Nov, 2018 ',
-                duration: '1h 28m',
+                title: 'JavaScript Tutorial',
+                creationDate: '12.01.2019',
+                duration: '88',
                 description: `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester`,
+                topRated: true,
             },
             {
                 id: '2',
-                title: 'Video Course 1. Name tag',
-                creationDate: '9 Nov, 2018 ',
-                duration: '1h 28m',
+                title: 'Python Course',
+                creationDate: '11.01.2019',
+                duration: '50',
                 description: `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester`,
+                topRated: false,
             },
             {
                 id: '3',
-                title: 'Video Course 1. Name tag',
-                creationDate: '9 Nov, 2018 ',
-                duration: '1h 28m',
+                title: 'PHP Workshop',
+                creationDate: '09.11.2018',
+                duration: '79',
                 description: `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester`,
+                topRated: false,
             },
         ];
 
+        this.list = this.courses;
         console.log('init');
     }
 
@@ -94,4 +101,7 @@ export class CoursesPageComponent implements
         console.log(id);
     }
 
+    public searchCourse(name: string): void {
+        this.list = this.filterPipe.transform(this.courses, name);
+    }
 }

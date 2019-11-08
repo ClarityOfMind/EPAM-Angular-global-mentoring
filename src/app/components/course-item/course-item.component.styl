@@ -1,21 +1,22 @@
 .course-item {
     display: flex;
     padding: 24px;
-    height: 163px;
+    min-height: 163px;
     border-radius: 8px;
     box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
     background-color: var(--white);
     margin-bottom: 24px;
+    border: 1px solid transparent;
 
     &__info {
         flex-basis: 889px;
         padding-right: 88px;
     }
 
-    &__app {
+    &__details {
         display: flex;
         justify-content: space-between;
-        width: 160px;
+        width: 180px;
         color: var(--cloudy-blue);
         font-size: 12px;
     }
@@ -38,6 +39,10 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 8px;
+
+        & > :first-child {
+            flex-basis: 385px;
+        }
     }
 
     &__description {
@@ -56,4 +61,8 @@
             width: 86px;
         }
     }
+}
+
+.top {
+    background-color: #f0dda3;
 }

@@ -2,12 +2,12 @@
     <app-breadcrumbs></app-breadcrumbs>
     <div class="courses-page__container container">
         <div class="courses-page__actions">
-            <app-course-search></app-course-search>
+            <app-course-search (search)="searchCourse($event)"></app-course-search>
             <button class="button button__add button--large button--blue">Add course</button>
         </div>
 
         <div>
-            <ng-container *ngFor="let course of courses">
+            <ng-container *ngFor="let course of list">
                 <app-course-item
                     [course]="course"
                     (deleteCourse)="deleteCourse($event)"

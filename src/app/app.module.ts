@@ -12,6 +12,9 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { CourseSearchComponent } from './components/course-search/course-search.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
 import {Routes, RouterModule} from '@angular/router';
+import { HighlightDirective } from './directives/highlight.directive';
+import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
+import { FilterPipe } from './pipes/filter-pipe/filter.pipe';
 
 const routes: Routes = [
   { path: 'courses-page', component: CoursesPageComponent },
@@ -30,7 +33,10 @@ const routes: Routes = [
     CoursesPageComponent,
     BreadcrumbsComponent,
     CourseSearchComponent,
-    CourseItemComponent
+    CourseItemComponent,
+    HighlightDirective,
+    DurationPipe,
+    FilterPipe,
   ],
   imports: [
     FormsModule,
@@ -38,7 +44,7 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
