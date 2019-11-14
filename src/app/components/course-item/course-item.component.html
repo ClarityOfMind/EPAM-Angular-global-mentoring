@@ -7,7 +7,7 @@
         <div class="course-item__row">
             <div class="flex-container">
                 <h2>{{course.title | uppercase}}</h2>
-                <span *ngIf="course.topRated">star</span>
+                <span *ngIf="course.topRated" class="course-item__top-rated"></span>
             </div>
 
             <div class="course-item__details">

@@ -6,15 +6,19 @@
             <button class="button button__add button--large button--blue">Add course</button>
         </div>
 
-        <div>
-            <ng-container *ngFor="let course of list">
-                <app-course-item
-                    [course]="course"
-                    (deleteCourse)="deleteCourse($event)"
-                ></app-course-item>
-            </ng-container>
-        </div>
+        <ng-container *ngIf="list.length">
+            <div>
+                <ng-container *ngFor="let course of list">
+                    <app-course-item
+                        [course]="course"
+                        (deleteCourse)="deleteCourse($event)"
+                    ></app-course-item>
+                </ng-container>
+            </div>
 
-        <button class="button courses-page__load-button" (click)="load()">Load More</button>
+            <button class="button courses-page__load-button" (click)="load()">Load More</button>
+        </ng-container>
+
+        <div *ngIf="!list.length" class="courses-page__empty">No data. Feel free to add new courses</div>
     </div>
 </section>
