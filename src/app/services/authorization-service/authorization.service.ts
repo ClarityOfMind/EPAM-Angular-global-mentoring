@@ -12,15 +12,17 @@ export class AuthorizationService {
     }
 
     public login(auth: Authorization): void {
+        this.currentUser = auth;
         localStorage.setItem('userName', JSON.stringify(auth));
     }
 
     public logout(): void {
         this.currentUser = null;
+        localStorage.removeItem('userName');
     }
 
-    public getUserInfo(): void {
-        return this.currentUser = null;
+    public getUserInfo(): Authorization {
+        return this.currentUser;
     }
 
     public get isAuthenticated(): boolean {

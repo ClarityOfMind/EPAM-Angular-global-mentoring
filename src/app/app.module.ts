@@ -15,6 +15,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { HighlightDirective } from './directives/highlight.directive';
 import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 import { FilterPipe } from './pipes/filter-pipe/filter.pipe';
+import { LoginPageComponent } from './components/login-page/login-page/login-page.component';
 
 const routes: Routes = [
   { path: 'courses-page', component: CoursesPageComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
     HighlightDirective,
     DurationPipe,
     FilterPipe,
+    LoginPageComponent,
   ],
   imports: [
     FormsModule,
