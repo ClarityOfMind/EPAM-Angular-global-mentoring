@@ -6,10 +6,12 @@
             <div class="login-page__field">
                 <label for="e-mail" class="login-page__label">E-mail:</label>
                 <input
+                    [(ngModel)]="userLogin"
                     class="login-page__input"
                     type="e-mail"
                     id="e-mail"
                     placeholder="Enter e-mail"
+                    name="userLogin"
                 >
             </div>
             <div class="login-page__field">
@@ -21,7 +23,13 @@
                     placeholder="Enter password"
                 >
             </div>
-            <button class="button login-page__submit-button">Login</button>
+            <div class="flex-container flex-between">
+                <a class="login-page__pass-res-link" href="#">Forgot password?</a>
+                <button
+                    (click)="login()"
+                    class="button login-page__submit-button">Login</button>
+            </div>
+
         </form>
     </div>
 </section>

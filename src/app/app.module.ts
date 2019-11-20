@@ -17,13 +17,14 @@ import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 import { FilterPipe } from './pipes/filter-pipe/filter.pipe';
 import { LoginPageComponent } from './components/login-page/login-page/login-page.component';
 
-const routes: Routes = [
-  { path: 'courses-page', component: CoursesPageComponent },
-  { path: '',
-    redirectTo: '/courses-page',
-    pathMatch: 'full'
-  },
-];
+// const routes: Routes = [
+//     { path: 'courses-page', component: CoursesPageComponent },
+//     { path: '',
+//         redirectTo: '/courses-page',
+//         pathMatch: 'full'
+//     },
+//     { path: 'login', component: LoginPageComponent }
+// ];
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ const routes: Routes = [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
   ],
   providers: [FilterPipe],
   bootstrap: [AppComponent]

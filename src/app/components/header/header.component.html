@@ -2,13 +2,17 @@
     <div class="header__container container">
         <app-logo></app-logo>
 
-        <div class="header__login">
-            <span class="header__login-user">User login</span>
+        <div *ngIf="authService.isAuthenticated" class="header__login">
+            <span class="header__login-user">{{authService.getUserInfo().login}}</span>
             <button
                 (click)="logout()"
                 type="button"
                 class="button header__logoff-button"
             >Log off</button>
         </div>
+        <a
+            *ngIf="!authService.isAuthenticated"
+            [routerLink]="['/login']"
+        >Login</a>
     </div>
 </header>

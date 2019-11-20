@@ -8,17 +8,17 @@ export class AuthorizationService {
     private currentUser: Authorization | null;
 
     constructor() {
-        this.currentUser = localStorage.getItem('userName') && JSON.parse(localStorage.getItem('userName'));
+        this.currentUser = localStorage.getItem('login') && JSON.parse(localStorage.getItem('login'));
     }
 
     public login(auth: Authorization): void {
         this.currentUser = auth;
-        localStorage.setItem('userName', JSON.stringify(auth));
+        localStorage.setItem('login', JSON.stringify(auth));
     }
 
     public logout(): void {
         this.currentUser = null;
-        localStorage.removeItem('userName');
+        localStorage.removeItem('login');
     }
 
     public getUserInfo(): Authorization {

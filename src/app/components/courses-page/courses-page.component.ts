@@ -2,20 +2,9 @@ import {
     Component,
     ViewEncapsulation,
     OnInit,
-    OnChanges,
-    DoCheck,
-    AfterContentInit,
-    AfterContentChecked,
-    AfterViewInit,
-    AfterViewChecked,
-    OnDestroy,
-
 } from '@angular/core';
 import { Course } from '../../interfaces/course';
-import { FilterPipe } from '../../pipes/filter-pipe/filter.pipe';
 import { CourseService } from 'src/app/services/course-service/course-service.service';
-
-
 @Component({
     selector: 'app-courses-page',
     templateUrl: './courses-page.component.html',
@@ -26,9 +15,9 @@ export class CoursesPageComponent implements OnInit {
     public courses: Course[];
     public id: string;
     public list: Course[];
+    private lastSearch: string;
 
     constructor(
-        private filterPipe: FilterPipe,
         private courseService: CourseService,
     ) {}
 
@@ -43,11 +32,12 @@ export class CoursesPageComponent implements OnInit {
     public deleteCourse(id: string): void {
         if (confirm('Do you really want to delete course?')) {
             this.courseService.removeItem(id);
-            this.list = this.courseService.getList();
+            this.list = this.courseService.getList(this.lastSearch);
         }
     }
 
     public searchCourse(name: string): void {
-        this.list = this.filterPipe.transform(this.courses, name);
+        this.lastSearch = name;
+        this.list = this.courseService.getList(name);
     }
 }

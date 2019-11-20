@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthorizationService } from 'src/app/services/authorization-service/authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -10,7 +11,8 @@ import { AuthorizationService } from 'src/app/services/authorization-service/aut
 export class HeaderComponent implements OnInit {
 
     constructor(
-        private authService: AuthorizationService,
+        public authService: AuthorizationService,
+        private router: Router,
     ) { }
 
     ngOnInit() {
@@ -19,5 +21,6 @@ export class HeaderComponent implements OnInit {
     public logout() {
         console.log('logout');
         this.authService.logout();
+        this.router.navigate(['/login']);
     }
 }

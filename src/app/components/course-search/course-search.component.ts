@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { CourseService } from 'src/app/services/course-service/course-service.service';
 
 @Component({
   selector: 'app-course-search',
@@ -10,7 +11,7 @@ export class CourseSearchComponent implements OnInit {
 
   @Output() search = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(public courseService: CourseService) { }
 
   ngOnInit() {
   }

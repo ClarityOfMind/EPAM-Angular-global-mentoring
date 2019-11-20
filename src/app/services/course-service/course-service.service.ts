@@ -5,6 +5,7 @@ import { Course } from 'src/app/interfaces/course';
     providedIn: 'root'
 })
 export class CourseService {
+    private filter: string;
     private courses = [
         {
             id: '1',
@@ -34,7 +35,12 @@ export class CourseService {
 
     constructor() { }
 
-    public getList(): Course[] {
+    public getList(filter?: string): Course[] {
+        if (filter) {
+            const regex = new RegExp(filter, 'i');
+            return this.courses.filter(course => regex.test(course.title));
+        }
+
         return this.courses;
     }
 
@@ -50,13 +56,10 @@ export class CourseService {
     }
 
     public removeItem(id: string): void {
-        let index: number;
+        const index = this.courses.findIndex(course => course.id === id);
 
-        for (const course of this.courses) {
-            if (course.id === id ) {
-                index = this.courses.indexOf(course);
-            }
+        if (index >= 0) {
+            this.courses.splice(index, 1);
         }
-        this.courses.splice(index, 1);
     }
 }
