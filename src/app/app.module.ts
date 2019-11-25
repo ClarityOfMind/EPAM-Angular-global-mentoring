@@ -16,6 +16,8 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 import { FilterPipe } from './pipes/filter-pipe/filter.pipe';
 import { LoginPageComponent } from './components/login-page/login-page/login-page.component';
+import { CourseCreatorComponent } from './components/course-creator/course-creator.component';
+import { DurationFieldComponent } from './components/duration-field/duration-field.component';
 
 // const routes: Routes = [
 //     { path: 'courses-page', component: CoursesPageComponent },
@@ -40,6 +42,8 @@ import { LoginPageComponent } from './components/login-page/login-page/login-pag
     DurationPipe,
     FilterPipe,
     LoginPageComponent,
+    CourseCreatorComponent,
+    DurationFieldComponent,
   ],
   imports: [
     FormsModule,

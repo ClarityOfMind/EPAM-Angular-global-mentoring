@@ -5,7 +5,6 @@ import { Course } from 'src/app/interfaces/course';
     providedIn: 'root'
 })
 export class CourseService {
-    private filter: string;
     private courses = [
         {
             id: '1',

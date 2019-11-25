@@ -1,0 +1,60 @@
+.form {
+    &__field {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        position: relative;
+
+        & label {
+            position: relative;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--slate-gray);
+            letter-spacing: 0.22px;
+            margin-bottom: 9px;
+        }
+
+        & input,
+        & textarea {
+            height 36px;
+            padding-left: 12px;
+            border-radius: 3px;
+            border: 1px solid var(--light-gray);
+
+            &::placeholder {
+                color: var(--silver);
+            }
+        }
+
+        & input[type=number]::-webkit-inner-spin-button,
+        & input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        & textarea {
+            padding-top: 10px;
+            height auto;
+        }
+
+        & .required {
+            &::after {
+                content: '*required';
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                font-size: 12px;
+                color: var(--battleship-gray);
+            }
+        }
+
+        &--short {
+           width: 150px;
+        }
+        &--medium {
+           width: 312px;
+        }
+    }
+}
+

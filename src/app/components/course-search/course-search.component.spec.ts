@@ -24,7 +24,7 @@ describe('CourseSearchComponent', () => {
     });
 
     it('can serach a course', () => {
-        const searchSpy = spyOn(component, 'search');
+        const searchSpy = spyOn(component, 'find');
 
         searchButton.click();
 
@@ -34,7 +34,7 @@ describe('CourseSearchComponent', () => {
     it('can serach a course', () => {
         const consoleSpy = spyOn(console, 'log');
 
-        component.search();
+        component.find();
 
         expect(consoleSpy).toHaveBeenCalled();
     });

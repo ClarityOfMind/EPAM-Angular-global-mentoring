@@ -1,0 +1,28 @@
+.course-creator {
+    padding: 24px;
+    background-color: var(--white);
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    border-radius: 8px;
+    margin: auto;
+    width: 731px;
+
+    &__title {
+        margin-bottom: 22px;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+
+        & button {
+            font-size: 14px;
+            font-weight: 600;
+            height: 36px;
+
+            &[type="button"] {
+                margin-right: 12px;
+                color: var(--slate-gray-two)
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<div class="course-creator">
+    <h2 class="course-creator__title">New Course</h2>
+    <form class="form">
+        <div class="form__field">
+            <label class="required" for="title">Title:</label>
+            <input
+                [(ngModel)]="title"
+                class="input"
+                id="title"
+                type="text"
+                placeholder="Add title"
+            >
+        </div>
+
+        <div class="form__field">
+            <label class="required" for="description">Description:</label>
+            <textarea
+                [(ngModel)]="description"
+                rows="6"
+                id="description"
+                placeholder="Add description"
+            ></textarea>
+        </div>
+
+        <app-duration-field [duration]="duration"></app-duration-field>
+
+        <div class="form__field form__field--short">
+            <label class="required" for="date">Date:</label>
+            <input
+                [(ngModel)]="date"
+                id="date"
+                type="text"
+                placeholder="mm-dd-yyyy"
+            >
+        </div>
+
+        <div class="form__field form__field--medium">
+            <label class="required" for="authors">Authors:</label>
+            <input
+                [(ngModel)]="authors"
+                id="authors"
+                type="text"
+                placeholder="Start typing"
+            >
+        </div>
+
+        <div class="course-creator__buttons">
+            <button class="button button--medium" type="button">Cancel</button>
+            <button class="button button--medium button--green" type="submit">Save</button>
+        </div>
+    </form>
+</div>

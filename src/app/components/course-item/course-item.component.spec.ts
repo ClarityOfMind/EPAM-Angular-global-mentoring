@@ -31,6 +31,7 @@ describe('CourseItemComponent', () => {
         creationDate: 'creationDate',
         duration: 'duration',
         description: 'description',
+        topRated: true,
     };
 
     let component: CourseItemComponent;

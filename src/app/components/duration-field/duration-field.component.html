@@ -1,0 +1,10 @@
+<div class="form__field form__field--short">
+    <label class="required" for="duration">Duration:</label>
+    <input
+        [(ngModel)]="duration"
+        id="duration"
+        type="number"
+        placeholder="minutes"
+    >
+    <span *ngIf="duration" class="duration-field__aside-widget">{{ duration | duration}}</span>
+</div>

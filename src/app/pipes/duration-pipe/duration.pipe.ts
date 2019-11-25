@@ -6,11 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
 
     transform(durtation: string): string {
-        const date = new Date(+durtation * 60000);
-        const hours = date.getHours() - 4;
-        const minutes = date.getMinutes();
+        const hours = Math.floor(Number(durtation) / 60);
+        const minutes = Number(durtation) - hours * 60;
 
-        return hours > 0 ? `${hours}h ${minutes}min` : `${minutes}min`;
+        console.log(hours);
+        console.log(minutes);
+
+        return hours > 0 ? `${hours}h ${minutes}min` : `${durtation}min`;
     }
 
 }
