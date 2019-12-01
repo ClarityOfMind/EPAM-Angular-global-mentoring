@@ -10,9 +10,5 @@
                 class="button header__logoff-button"
             >Log off</button>
         </div>
-        <a
-            *ngIf="!authService.isAuthenticated"
-            [routerLink]="['/login']"
-        >Login</a>
     </div>
 </header>

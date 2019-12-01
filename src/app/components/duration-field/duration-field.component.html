@@ -5,6 +5,8 @@
         id="duration"
         type="number"
         placeholder="minutes"
+        name="duration"
+        required
     >
     <span *ngIf="duration" class="duration-field__aside-widget">{{ duration | duration}}</span>
 </div>

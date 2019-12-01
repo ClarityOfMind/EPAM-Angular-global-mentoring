@@ -11,22 +11,13 @@ import { CoursesPageComponent } from './components/courses-page/courses-page.com
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { CourseSearchComponent } from './components/course-search/course-search.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
-import {Routes, RouterModule} from '@angular/router';
 import { HighlightDirective } from './directives/highlight.directive';
 import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 import { FilterPipe } from './pipes/filter-pipe/filter.pipe';
 import { LoginPageComponent } from './components/login-page/login-page/login-page.component';
 import { CourseCreatorComponent } from './components/course-creator/course-creator.component';
 import { DurationFieldComponent } from './components/duration-field/duration-field.component';
-
-// const routes: Routes = [
-//     { path: 'courses-page', component: CoursesPageComponent },
-//     { path: '',
-//         redirectTo: '/courses-page',
-//         pathMatch: 'full'
-//     },
-//     { path: 'login', component: LoginPageComponent }
-// ];
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -44,12 +35,12 @@ import { DurationFieldComponent } from './components/duration-field/duration-fie
     LoginPageComponent,
     CourseCreatorComponent,
     DurationFieldComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    // RouterModule.forRoot(routes),
   ],
   providers: [FilterPipe],
   bootstrap: [AppComponent]

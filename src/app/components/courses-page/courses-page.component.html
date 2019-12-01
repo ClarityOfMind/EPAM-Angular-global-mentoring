@@ -3,7 +3,10 @@
     <div class="courses-page__container container">
         <div class="courses-page__actions">
             <app-course-search (search)="searchCourse($event)"></app-course-search>
-            <button class="button button__add button--large button--blue">Add course</button>
+            <button
+                (click)="addCourse()"
+                class="button button__add button--large button--blue"
+            >Add course</button>
         </div>
 
         <ng-container *ngIf="list.length">

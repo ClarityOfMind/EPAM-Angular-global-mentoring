@@ -18,7 +18,10 @@
         <p class="course-item__description">{{course.description}}</p>
     </div>
     <div class="course-item__actions">
-        <button class="button button--medium button--blue button__edit">Edit</button>
+        <button
+            class="button button--medium button--blue button__edit"
+            (click)="edit()"
+            >Edit</button>
         <button class="button button--medium button--blue button__delete" (click)="deleteItem()">Delete</button>
     </div>
 </div>

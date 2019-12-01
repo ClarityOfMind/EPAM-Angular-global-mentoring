@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Course } from '../../interfaces/course';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { CourseService } from 'src/app/services/course-service/course-service.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-course-item',
@@ -12,11 +14,17 @@ import { ChangeDetectionStrategy } from '@angular/core';
 export class CourseItemComponent implements OnInit {
     @Input() course: Course;
 
-    @Output() deleteCourse = new EventEmitter<string>();
+    @Output() deleteCourse = new EventEmitter<number>();
 
-    constructor() { }
+    constructor(
+        private router: Router,
+    ) { }
 
     ngOnInit() {
+    }
+
+    public edit() {
+        this.router.navigate([`courses-page/${this.course.id}`], {state: {id: this.course.id}} );
     }
 
     public deleteItem(): void {

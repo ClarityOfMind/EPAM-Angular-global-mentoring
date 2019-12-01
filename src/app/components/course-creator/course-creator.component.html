@@ -4,49 +4,67 @@
         <div class="form__field">
             <label class="required" for="title">Title:</label>
             <input
-                [(ngModel)]="title"
+                [(ngModel)]="course.title"
                 class="input"
                 id="title"
                 type="text"
                 placeholder="Add title"
+                name="title"
+                required
             >
         </div>
 
         <div class="form__field">
             <label class="required" for="description">Description:</label>
             <textarea
-                [(ngModel)]="description"
+                [(ngModel)]="course.description"
                 rows="6"
                 id="description"
                 placeholder="Add description"
+                title="description"
+                name="description"
+                required
             ></textarea>
         </div>
 
-        <app-duration-field [duration]="duration"></app-duration-field>
+        <app-duration-field [duration]="course.duration"></app-duration-field>
 
         <div class="form__field form__field--short">
             <label class="required" for="date">Date:</label>
             <input
-                [(ngModel)]="date"
+                [(ngModel)]="course.creationDate"
                 id="date"
                 type="text"
                 placeholder="mm-dd-yyyy"
+                title="date"
+                name="date"
+                required
             >
         </div>
 
         <div class="form__field form__field--medium">
             <label class="required" for="authors">Authors:</label>
             <input
-                [(ngModel)]="authors"
+                [(ngModel)]="course.authors"
                 id="authors"
                 type="text"
                 placeholder="Start typing"
+                name="authors"
+                required
             >
         </div>
 
         <div class="course-creator__buttons">
-            <button class="button button--medium" type="button">Cancel</button>
-            <button class="button button--medium button--green" type="submit">Save</button>
+            <button
+                (click)="cancel()"
+                class="button button--medium"
+                type="button"
+            >Cancel</button>
+            <button
+                (click)="save(course)"
+                class="button button--medium button--green"
+                type="button"
+            >Save</button>
         </div>
     </form>
 </div>
