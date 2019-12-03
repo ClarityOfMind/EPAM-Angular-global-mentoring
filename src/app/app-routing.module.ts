@@ -16,21 +16,32 @@ const routes: Routes = [
     {   path: '',
         redirectTo: 'courses-page',
         pathMatch: 'full',
-    },
-    {
-        path: 'courses-page/:id',
-        component: CourseCreatorComponent,
-        canActivate: [AuthGuard],
-        data: {}
+        data: {
+            breadcrumb: 'Courses'
+        },
     },
     {
         path: 'courses-page/new',
         component: CourseCreatorComponent,
         canActivate: [AuthGuard],
+        data: {
+            breadcrumb: 'New'
+        },
+    },
+    {
+        path: 'courses-page/:id',
+        component: CourseCreatorComponent,
+        canActivate: [AuthGuard],
+        data: {
+            breadcrumb: 'Edit'
+        },
     },
     {
         path: 'login',
-        component: LoginPageComponent
+        component: LoginPageComponent,
+        data: {
+            breadcrumb: 'Login'
+        },
     },
     {
         path: '**',
@@ -39,7 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

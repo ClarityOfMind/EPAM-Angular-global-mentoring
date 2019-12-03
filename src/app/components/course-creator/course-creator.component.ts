@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Course } from 'src/app/interfaces/course';
 import { CourseService } from 'src/app/services/course-service/course-service.service';
 import { Router } from '@angular/router';
-import { create } from 'domain';
 
 @Component({
     selector: 'app-course-creator',
@@ -25,7 +24,7 @@ export class CourseCreatorComponent implements OnInit {
         this.course = id ? this.courseService.getItemById(id) : this.setEmptyCourse();
     }
 
-    public save(course) {
+    public save(course: Course): void {
         if (this.mode === 'create') {
             this.courseService.createCourse({id: Math.random() * 10, ...course});
         } else {
@@ -35,11 +34,11 @@ export class CourseCreatorComponent implements OnInit {
         this.router.navigate(['courses-page']);
     }
 
-    public cancel() {
+    public cancel(): void {
         this.router.navigate(['courses-page']);
     }
 
-    public setEmptyCourse() {
+    public setEmptyCourse(): any {
         return {
             title: '',
             creationDate: '',
