@@ -16,32 +16,20 @@ const routes: Routes = [
     {   path: '',
         redirectTo: 'courses-page',
         pathMatch: 'full',
-        data: {
-            breadcrumb: 'Courses'
-        },
     },
     {
         path: 'courses-page/new',
         component: CourseCreatorComponent,
         canActivate: [AuthGuard],
-        data: {
-            breadcrumb: 'New'
-        },
     },
     {
         path: 'courses-page/:id',
         component: CourseCreatorComponent,
         canActivate: [AuthGuard],
-        data: {
-            breadcrumb: 'Edit'
-        },
     },
     {
         path: 'login',
         component: LoginPageComponent,
-        data: {
-            breadcrumb: 'Login'
-        },
     },
     {
         path: '**',

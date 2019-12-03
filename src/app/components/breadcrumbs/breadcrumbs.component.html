@@ -1,6 +1,14 @@
 <div class="breadcrumbs">
     <div class="breadcrumbs__container container">
-        <p>{{bradcrumbs}}</p>
+        <ng-container *ngFor="let crumb of breadcrumbs; last as last">
+                <a
+                    *ngIf="!last"
+                    [routerLink]="crumb.route"
+                    class="breadcrumbs__link"
+                >{{crumb.title}}</a>
+                {{last ? '' : '/'}}
+                <span *ngIf="last">{{crumb.title}}</span>
+        </ng-container>
     </div>
 </div>
 

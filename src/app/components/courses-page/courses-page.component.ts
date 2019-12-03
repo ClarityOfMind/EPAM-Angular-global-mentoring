@@ -17,6 +17,12 @@ export class CoursesPageComponent implements OnInit {
     public id: string;
     public list: Course[];
     private lastSearch: string;
+    public  breadcrumbs = [
+        {
+            title: 'Courses',
+            route: 'courses-page'
+        },
+    ];
 
     constructor(
         private courseService: CourseService,

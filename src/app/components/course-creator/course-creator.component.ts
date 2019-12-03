@@ -12,6 +12,16 @@ import { Router } from '@angular/router';
 export class CourseCreatorComponent implements OnInit {
     public course: any;
     public mode: 'create' | 'edit';
+    public breadcrumbs = [
+        {
+            title: 'Course',
+            route: '/courses-page'
+        },
+        {
+            title: 'New',
+            route: '/courses-page/new'
+        },
+    ];
 
     constructor(
         private courseService: CourseService,

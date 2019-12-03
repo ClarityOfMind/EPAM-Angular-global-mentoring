@@ -1,32 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Breadcrumbs } from 'src/app/interfaces/breadcrumbs';
 
 @Component({
     selector: 'app-breadcrumbs',
     templateUrl: './breadcrumbs.component.html',
-    styleUrls: ['./breadcrumbs.component.styl']
+    styleUrls: ['./breadcrumbs.component.styl'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbsComponent implements OnInit {
-    public bradcrumbs = 'Courses';
+    @Input() breadcrumbs: Breadcrumbs[];
 
-    constructor(
-        private router: Router,
-        private activatedRouter: ActivatedRoute,
-    ) { }
+    constructor() { }
 
     ngOnInit() {
-        this.router.events
-            .pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => this.bradcrumbs = this.createBreadcrumbs(this.activatedRouter.root));
-    }
-
-    private createBreadcrumbs(route: ActivatedRoute): string {
-        console.log(route);
-        const children: ActivatedRoute[] = route.children;
-
-        if (children.length === 0) {
-          return;
-        }
     }
 }
