@@ -9,7 +9,7 @@ export class CourseService {
         {
             id: 1,
             title: 'JavaScript Tutorial',
-            creationDate: '12.01.2019',
+            creationDate: '2019-01-12',
             duration: '88',
             description: `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester`,
             topRated: true,
@@ -18,7 +18,7 @@ export class CourseService {
         {
             id: 2,
             title: 'Python Course',
-            creationDate: '11.01.2019',
+            creationDate: '2019-01-11',
             duration: '50',
             description: `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester`,
             topRated: false,
@@ -27,7 +27,7 @@ export class CourseService {
         {
             id: 3,
             title: 'PHP Workshop',
-            creationDate: '09.11.2018',
+            creationDate: '2018-11-09',
             duration: '79',
             description: `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester`,
             topRated: false,
@@ -51,19 +51,15 @@ export class CourseService {
     }
 
     public getItemById(id: number): Course {
-        let course;
-        this.courses.map(entry => {
-            if (entry.id === id) {
-                course = entry;
-            }
-        });
-
-        return course;
+        return this.courses
+            .find(entry => entry.id === id);
     }
 
     public updateItem(course: Course): void {
         const index = this.courses.findIndex(entry => entry.id === course.id);
-        this.courses[index] = course;
+        if (index >= 0) {
+            this.courses[index] = course;
+        }
     }
 
     public removeItem(id: number): void {

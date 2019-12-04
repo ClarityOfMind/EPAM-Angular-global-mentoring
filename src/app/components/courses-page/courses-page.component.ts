@@ -20,7 +20,6 @@ export class CoursesPageComponent implements OnInit {
     public  breadcrumbs = [
         {
             title: 'Courses',
-            route: 'courses-page'
         },
     ];
 

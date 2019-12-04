@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Course } from 'src/app/interfaces/course';
 import { CourseService } from 'src/app/services/course-service/course-service.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Breadcrumbs} from '../../interfaces/breadcrumbs';
 
 @Component({
     selector: 'app-course-creator',
@@ -10,35 +11,51 @@ import { Router } from '@angular/router';
     encapsulation: ViewEncapsulation.None,
 })
 export class CourseCreatorComponent implements OnInit {
-    public course: any;
-    public mode: 'create' | 'edit';
-    public breadcrumbs = [
-        {
-            title: 'Course',
-            route: '/courses-page'
-        },
-        {
-            title: 'New',
-            route: '/courses-page/new'
-        },
-    ];
+    public course: Course;
+    public id: number;
+    public breadcrumbs: Breadcrumbs[];
+
+    get title(): string {
+        return this.id ? 'Edit' : 'New';
+    }
 
     constructor(
         private courseService: CourseService,
         private router: Router,
+        private route: ActivatedRoute,
     ) { }
 
     ngOnInit() {
-        const id = history.state.id;
-        this.mode = id ? 'edit' : 'create';
-        this.course = id ? this.courseService.getItemById(id) : this.setEmptyCourse();
+        this.id = +this.route.snapshot.paramMap.get('id'); // Вот так берем параметр роутинга. Это статичный вариант
+        this.breadcrumbs = [
+            {
+                title: 'Course',
+                route: '/courses-page'
+            },
+            {
+                title: this.title,
+            }
+        ];
+
+        this.course = {
+            id: Math.random() * 10,
+            title: '',
+            creationDate: '',
+            duration: '',
+            description: '',
+            authors: [],
+            topRated: false,
+        };
+        if (this.id) {
+            Object.assign(this.course, this.courseService.getItemById(this.id)); // Это важно. Так ты гарантированно клонируешь объект, а не используешь тот же.
+        }
     }
 
-    public save(course: Course): void {
-        if (this.mode === 'create') {
-            this.courseService.createCourse({id: Math.random() * 10, ...course});
+    public save(): void {
+        if (!this.id) {
+            this.courseService.createCourse(this.course);
         } else {
-            this.courseService.updateItem(course);
+            this.courseService.updateItem(this.course);
         }
 
         this.router.navigate(['courses-page']);
@@ -47,15 +64,4 @@ export class CourseCreatorComponent implements OnInit {
     public cancel(): void {
         this.router.navigate(['courses-page']);
     }
-
-    public setEmptyCourse(): any {
-        return {
-            title: '',
-            creationDate: '',
-            duration: '',
-            description: '',
-            authors: [],
-        };
-    }
-
 }

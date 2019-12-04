@@ -1,6 +1,6 @@
 <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 <div class="course-creator">
-    <h2 class="course-creator__title">New Course</h2>
+    <h2 class="course-creator__title">{{title}}</h2>
     <form class="form">
         <div class="form__field">
             <label class="required" for="title">Title:</label>
@@ -36,7 +36,7 @@
                 [(ngModel)]="course.creationDate"
                 id="date"
                 type="text"
-                placeholder="mm-dd-yyyy"
+                placeholder="yyyy-mm-dd"
                 title="date"
                 name="date"
                 required
@@ -62,7 +62,7 @@
                 type="button"
             >Cancel</button>
             <button
-                (click)="save(course)"
+                (click)="save()"
                 class="button button--medium button--green"
                 type="button"
             >Save</button>
