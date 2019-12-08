@@ -3,7 +3,7 @@
         <app-logo></app-logo>
 
         <div *ngIf="authService.isAuthenticated" class="header__login">
-            <span class="header__login-user">{{authService.getUserInfo().login}}</span>
+            <span class="header__login-user">{{userName}}</span>
             <button
                 (click)="logout()"
                 type="button"

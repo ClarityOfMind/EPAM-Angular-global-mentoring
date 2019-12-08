@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthorizationService } from 'src/app/services/authorization-service/authorization.service';
 import { Router } from '@angular/router';
+import {Authorization} from '../../../interfaces/authorization';
 
 @Component({
     templateUrl: './login-page.component.html',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
     encapsulation: ViewEncapsulation.None,
 })
 export class LoginPageComponent implements OnInit {
-    public userLogin: string;
+    public user: Authorization;
 
     constructor(
         private authService: AuthorizationService,
@@ -16,12 +17,22 @@ export class LoginPageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.user = {
+            login: '',
+            password: '',
+        };
     }
 
-    public login() {
-        this.authService.login({login: this.userLogin});
-        this.userLogin = null;
+    public login(): void {
+        this.authService.login({login: this.user.password, password: this.user.password});
+        this.resetFields();
         this.router.navigate(['/']);
+    }
+
+    private resetFields(): void {
+        for (const field in this.user) {
+            this.user[field] = null;
+        }
     }
 
 }

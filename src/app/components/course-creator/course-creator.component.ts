@@ -39,12 +39,12 @@ export class CourseCreatorComponent implements OnInit {
 
         this.course = {
             id: Math.random() * 10,
-            title: '',
-            creationDate: '',
-            duration: '',
+            name: '',
+            date: '',
+            length: null,
             description: '',
             authors: [],
-            topRated: false,
+            isTopRated: false,
         };
         if (this.id) {
             Object.assign(this.course, this.courseService.getItemById(this.id)); // Это важно. Так ты гарантированно клонируешь объект, а не используешь тот же.

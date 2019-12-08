@@ -6,21 +6,23 @@
             <div class="login-page__field">
                 <label for="e-mail" class="login-page__label">E-mail:</label>
                 <input
-                    [(ngModel)]="userLogin"
+                    [(ngModel)]="user.login"
                     class="login-page__input"
                     type="e-mail"
                     id="e-mail"
                     placeholder="Enter e-mail"
-                    name="userLogin"
+                    name="login"
                 >
             </div>
             <div class="login-page__field">
                 <label for="password" class="login-page__label">Password:</label>
                 <input
+                    [(ngModel)]="user.password"
                     class="login-page__input"
                     type="password"
                     id="password"
                     placeholder="Enter password"
+                    name="password"
                 >
             </div>
             <div class="flex-container flex-between">

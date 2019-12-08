@@ -1,28 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Authorization } from '../../interfaces/authorization';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthorizationService {
-    private currentUser: Authorization | null;
+    private currentUser: {name: string, token: string};
 
-    constructor() {
-        this.currentUser = localStorage.getItem('login') && JSON.parse(localStorage.getItem('login'));
+    constructor(
+        private http: HttpClient,
+    ) {
+        this.currentUser = localStorage.getItem('currentUser') && JSON.parse(localStorage.getItem('currentUser'));
     }
 
     public login(auth: Authorization): void {
-        this.currentUser = auth;
-        localStorage.setItem('login', JSON.stringify(auth));
+        this.http.post('http://localhost:3004/auth/login', auth)
+            .subscribe({
+                next: (fakeToken: {token: string}) => {
+                    this.currentUser = {name: auth.login, token: fakeToken.token };
+                    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                },
+                error: error => console.log(error),
+            });
     }
 
     public logout(): void {
         this.currentUser = null;
-        localStorage.removeItem('login');
+        localStorage.removeItem('currentUser');
     }
 
-    public getUserInfo(): Authorization {
-        return this.currentUser;
+    public getUserInfo(): Observable<any> {
+        return this.http.post('http://localhost:3004/auth/userinfo', {token: this.currentUser.token});
     }
 
     public get isAuthenticated(): boolean {

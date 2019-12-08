@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthorizationService } from 'src/app/services/authorization-service/authorization.service';
 import { Router } from '@angular/router';
+import {User} from '../../interfaces/user';
 
 @Component({
     selector: 'app-header',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
     encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
+    public userName: string;
 
     constructor(
         public authService: AuthorizationService,
@@ -16,6 +18,10 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        if (this.authService.isAuthenticated) {
+            this.authService.getUserInfo()
+                .subscribe((user: User) => this.userName = user.name.first);
+        }
     }
 
     public logout() {

@@ -1,18 +1,18 @@
 <div
     class="course-item"
     [appHighlight]="course"
-    [ngClass]="{'top': course.topRated}"
+    [ngClass]="{'top': course.isTopRated}"
 >
     <div class="course-item__info">
         <div class="course-item__row">
             <div class="flex-container">
-                <h2>{{course.title | uppercase}}</h2>
-                <span *ngIf="course.topRated" class="course-item__top-rated"></span>
+                <h2>{{course.name | uppercase}}</h2>
+                <span *ngIf="course.isTopRated" class="course-item__top-rated"></span>
             </div>
 
             <div class="course-item__details">
-                <span class="course-item__duration">{{course.duration | duration}}</span>
-                <span class="course-item__date">{{course.creationDate | date: 'dd.MMM.yyyy'}}</span>
+                <span class="course-item__duration">{{course.length | duration}}</span>
+                <span class="course-item__date">{{course.date | date: 'dd.MMM.yyyy'}}</span>
             </div>
         </div>
         <p class="course-item__description">{{course.description}}</p>

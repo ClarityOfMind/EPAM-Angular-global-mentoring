@@ -5,7 +5,7 @@
         <div class="form__field">
             <label class="required" for="title">Title:</label>
             <input
-                [(ngModel)]="course.title"
+                [(ngModel)]="course.name"
                 class="input"
                 id="title"
                 type="text"
@@ -28,12 +28,12 @@
             ></textarea>
         </div>
 
-        <app-duration-field [duration]="course.duration"></app-duration-field>
+        <app-duration-field [duration]="course.length"></app-duration-field>
 
         <div class="form__field form__field--short">
             <label class="required" for="date">Date:</label>
             <input
-                [(ngModel)]="course.creationDate"
+                [(ngModel)]="course.date"
                 id="date"
                 type="text"
                 placeholder="yyyy-mm-dd"

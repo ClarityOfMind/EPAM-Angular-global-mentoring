@@ -7,7 +7,7 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None,
 })
 export class DurationFieldComponent implements OnInit {
-    @Input() duration: string;
+    @Input() duration: number;
 
     constructor() { }
 
