@@ -47,21 +47,33 @@ export class CourseCreatorComponent implements OnInit {
             isTopRated: false,
         };
         if (this.id) {
-            Object.assign(this.course, this.courseService.getItemById(this.id)); // Это важно. Так ты гарантированно клонируешь объект, а не используешь тот же.
+            this.courseService.getItemById(this.id)
+                .subscribe(array => {
+                    this.course = array[0];
+                });
         }
     }
 
     public save(): void {
         if (!this.id) {
-            this.courseService.createCourse(this.course);
+            this.courseService.createCourse(this.course).subscribe(
+                () => this.router.navigate(['courses-page'])
+            );
         } else {
-            this.courseService.updateItem(this.course);
+            this.courseService.updateItem(this.course).subscribe(
+                () => this.router.navigate(['courses-page'])
+            );
         }
 
-        this.router.navigate(['courses-page']);
+
     }
 
     public cancel(): void {
         this.router.navigate(['courses-page']);
+    }
+
+    public onDurationChange(value: number) {
+        console.log(value);
+        this.course.length = value;
     }
 }

@@ -16,36 +16,44 @@ export class CoursesPageComponent implements OnInit {
     public courses: Course[];
     public id: string;
     public list: Course[];
-    private lastSearch: string;
     public  breadcrumbs = [
         {
             title: 'Courses',
         },
     ];
+    private count = 5;
 
     constructor(
         private courseService: CourseService,
         private router: Router,
     ) {}
 
-    ngOnInit() {
-        this.list = this.courseService.getList();
+    ngOnInit(): void {
+        this.getList(this.count);
     }
 
     public load(): void {
+        this.count += 5;
+        this.getList(this.count);
+    }
 
+    private getList(count: number): void {
+        this.courseService.getList(count)
+            .subscribe(courses => this.list = courses);
     }
 
     public deleteCourse(id: number): void {
         if (confirm('Do you really want to delete course?')) {
-            this.courseService.removeItem(id);
-            this.list = this.courseService.getList(this.lastSearch);
+            this.courseService.removeItem(id)
+                .subscribe(() => this.getList(this.count));
         }
     }
 
-    public searchCourse(name: string): void {
-        this.lastSearch = name;
-        this.list = this.courseService.getList(name);
+    public searchCourse(text: string): void {
+        this.courseService.search(text)
+            .subscribe(
+                courses => this.list = courses,
+            );
     }
 
     public addCourse() {

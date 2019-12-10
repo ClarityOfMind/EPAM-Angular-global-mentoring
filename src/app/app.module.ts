@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { LoginPageComponent } from './components/login-page/login-page/login-pag
 import { CourseCreatorComponent } from './components/course-creator/course-creator.component';
 import { DurationFieldComponent } from './components/duration-field/duration-field.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TokenInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,16 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-  HttpClientModule,
+    HttpClientModule,
   ],
-  providers: [FilterPipe],
+  providers: [
+      FilterPipe,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptor,
+        multi: true,
+      },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

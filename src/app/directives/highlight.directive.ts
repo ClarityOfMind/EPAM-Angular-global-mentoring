@@ -18,7 +18,7 @@ export class HighlightDirective implements AfterViewInit {
     @Input('appHighlight') course: Course;
 
     ngAfterViewInit(): void {
-        const courseDate = +new Date(this.course.creationDate);
+        const courseDate = +new Date(this.course.date);
         const currentDate = +new Date();
 
         this.fresh = courseDate < currentDate && courseDate >= (currentDate - (14 * DAY_MILLISECONDS));

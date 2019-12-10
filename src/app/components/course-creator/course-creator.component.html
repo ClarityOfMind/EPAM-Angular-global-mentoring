@@ -28,7 +28,10 @@
             ></textarea>
         </div>
 
-        <app-duration-field [duration]="course.length"></app-duration-field>
+        <app-duration-field
+                [(duration)]="course.length"
+                (durationChange)="onDurationChange($event)"
+        ></app-duration-field>
 
         <div class="form__field form__field--short">
             <label class="required" for="date">Date:</label>
@@ -46,7 +49,7 @@
         <div class="form__field form__field--medium">
             <label class="required" for="authors">Authors:</label>
             <input
-                [(ngModel)]="course.authors"
+                [(ngModel)]="course.authors[0]"
                 id="authors"
                 type="text"
                 placeholder="Start typing"

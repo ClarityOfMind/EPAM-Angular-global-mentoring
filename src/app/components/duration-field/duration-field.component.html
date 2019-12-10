@@ -2,6 +2,7 @@
     <label class="required" for="duration">Duration:</label>
     <input
         [(ngModel)]="duration"
+        (ngModelChange)="emit()"
         id="duration"
         type="number"
         placeholder="minutes"
