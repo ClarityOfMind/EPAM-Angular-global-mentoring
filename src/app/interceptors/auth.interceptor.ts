@@ -11,8 +11,9 @@ import {AuthorizationService} from '../services/authorization-service/authorizat
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const user = JSON.parse(localStorage.getItem('currentUser'))
         request = request.clone ({
-                setHeaders: JSON.parse(localStorage.getItem('currentUser')).token,
+                setHeaders: user ? user.token : '',
             }
         )
         return next.handle(request);
