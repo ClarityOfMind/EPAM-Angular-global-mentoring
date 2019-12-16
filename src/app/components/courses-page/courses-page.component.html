@@ -9,7 +9,7 @@
             >Add course</button>
         </div>
 
-        <ng-container *ngIf="list.length">
+        <ng-container *ngIf="list?.length">
             <div>
                 <ng-container *ngFor="let course of list">
                     <app-course-item
@@ -22,6 +22,6 @@
             <button class="button courses-page__load-button" (click)="load()">Load More</button>
         </ng-container>
 
-        <div *ngIf="!list.length" class="courses-page__empty">No data. Feel free to add new courses</div>
+        <div *ngIf="!list?.length" class="courses-page__empty">No data. Feel free to add new courses</div>
     </div>
 </section>
