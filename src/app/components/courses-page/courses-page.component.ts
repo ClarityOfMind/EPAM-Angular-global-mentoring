@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CoursesPageComponent implements OnInit {
     public courses: Course[];
     public id: string;
-    public list: Course[];
+    public list: Course[] = [];
     public  breadcrumbs = [
         {
             title: 'Courses',
