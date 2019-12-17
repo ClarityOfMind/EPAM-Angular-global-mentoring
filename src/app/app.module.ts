@@ -20,6 +20,7 @@ import { CourseCreatorComponent } from './components/course-creator/course-creat
 import { DurationFieldComponent } from './components/duration-field/duration-field.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TokenInterceptor } from './interceptors/auth.interceptor';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TokenInterceptor } from './interceptors/auth.interceptor';
     CourseCreatorComponent,
     DurationFieldComponent,
     PageNotFoundComponent,
+    LoadingComponent,
   ],
   imports: [
     FormsModule,

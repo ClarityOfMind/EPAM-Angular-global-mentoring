@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {LoadingService} from './services/loading.service';
 
 @Component({
     selector: 'app-root',
@@ -6,6 +7,14 @@ import { Component, ViewEncapsulation } from '@angular/core';
     styleUrls: ['./app.component.styl'],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
-    title = 'EPAM-Angular-global-mentoring';
+export class AppComponent implements OnInit{
+    public loading$: boolean;
+
+    constructor(
+        private loadingService: LoadingService,
+    ) {}
+
+    ngOnInit(): void {
+
+    }
 }

@@ -6,6 +6,7 @@ import {
 import { Course } from '../../interfaces/course';
 import { CourseService } from 'src/app/services/course-service/course-service.service';
 import { Router } from '@angular/router';
+import {LoadingService} from '../../services/loading.service';
 @Component({
     selector: 'app-courses-page',
     templateUrl: './courses-page.component.html',
@@ -26,6 +27,7 @@ export class CoursesPageComponent implements OnInit {
     constructor(
         private courseService: CourseService,
         private router: Router,
+        private loadingService: LoadingService,
     ) {}
 
     ngOnInit(): void {
@@ -39,7 +41,10 @@ export class CoursesPageComponent implements OnInit {
 
     private getList(count: number): void {
         this.courseService.getList(count)
-            .subscribe(courses => this.list = courses);
+            .subscribe(courses => {
+                this.list = courses;
+                this.loadingService.hideLoading();
+            });
     }
 
     public deleteCourse(id: number): void {
@@ -51,9 +56,10 @@ export class CoursesPageComponent implements OnInit {
 
     public searchCourse(text: string): void {
         this.courseService.search(text)
-            .subscribe(
-                courses => this.list = courses,
-            );
+            .subscribe(courses => {
+                this.list = courses;
+                this.loadingService.hideLoading();
+            });
     }
 
     public addCourse() {
