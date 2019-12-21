@@ -43,7 +43,6 @@ export class CoursesPageComponent implements OnInit {
         this.courseService.getList(count)
             .subscribe(courses => {
                 this.list = courses;
-                this.loadingService.hideLoading();
             });
     }
 
@@ -58,7 +57,6 @@ export class CoursesPageComponent implements OnInit {
         this.courseService.search(text)
             .subscribe(courses => {
                 this.list = courses;
-                this.loadingService.hideLoading();
             });
     }
 

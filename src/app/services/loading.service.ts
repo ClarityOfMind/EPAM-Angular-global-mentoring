@@ -5,19 +5,26 @@ import {Observable, Subject} from 'rxjs';
     providedIn: 'root'
 })
 export class LoadingService {
-    private loading$ = new Subject<boolean>();
+    public loading$ = new Subject<boolean>();
+    private count = 0
 
     constructor() { }
 
-    public init(): Observable<boolean> {
-        return this.loading$.asObservable();
-    }
-
     public showLoading(): void {
-        this.loading$.next(true);
+        this.count++;
+
+        if (this.count === 1) {
+            this.loading$.next(true);
+        }
     }
 
     public hideLoading(): void {
-        this.loading$.next(false);
+        this.count--;
+
+        if (this.count === 0) {
+            this.loading$.next(false);
+        }
+
+        this.count = Math.max(this.count, 0);
     }
 }
