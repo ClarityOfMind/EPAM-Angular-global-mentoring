@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthorizationService } from 'src/app/services/authorization-service/authorization.service';
 import { Router } from '@angular/router';
 import {User} from '../../interfaces/user';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-header',
@@ -10,7 +12,7 @@ import {User} from '../../interfaces/user';
     encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-    public userName: string;
+    public userName: Observable<string>;
 
     constructor(
         public authService: AuthorizationService,
@@ -18,12 +20,10 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if (this.authService.isAuthenticated) {
-            this.authService.getUserInfo()
-                .subscribe((user: User) => {
-                    this.userName = user.name.first;
-                });
-        }
+        this.userName = this.authService.getUserInfo()
+            .pipe(
+                map(user => user ? user.name.first + ' ' + user.name.last : '')
+            );
     }
 
     public logout() {

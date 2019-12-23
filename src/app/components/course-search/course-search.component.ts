@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { CourseService } from 'src/app/services/course-service/course-service.service';
-import {Observable, Subject, timer} from 'rxjs';
-import {debounce} from 'rxjs/operators';
+import {Subject, timer} from 'rxjs';
+import {debounce, filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-search',
@@ -10,26 +9,21 @@ import {debounce} from 'rxjs/operators';
 })
 export class CourseSearchComponent implements OnInit {
   public searchValue: string;
-  public searching$ = new Subject<string>()
+  public searching$ = new Subject<string>();
 
   @Output() search = new EventEmitter<string>();
 
-  constructor(public courseService: CourseService) { }
+  constructor() { }
 
   ngOnInit() {
       this.searching$
           .pipe(
-              debounce(() => timer(1000))
+              debounce(() => timer(1000)),
+              filter(query => query && query.length >= 3)
           )
           .subscribe(
-              () => this.search.emit(this.searchValue),
+              query => this.search.emit(query),
           );
-  }
-
-  public find(data: string) {
-      if (data.length > 3) {
-          this.searching$.next(data);
-      }
   }
 
 

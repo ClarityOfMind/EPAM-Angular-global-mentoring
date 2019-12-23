@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
     public loading$: boolean;
 
     constructor(
-        private loadingService: LoadingService,
+        public loadingService: LoadingService,
     ) {}
 
     ngOnInit(): void {

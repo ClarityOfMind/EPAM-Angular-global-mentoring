@@ -1,7 +1,7 @@
 <div class="search">
     <input
     [(ngModel)]="searchValue"
-    (keyup)="find(searchValue)"
+    (input)="searching$.next(searchValue)"
     class="search__input"
     type="text"
     placeholder="Text to search"
