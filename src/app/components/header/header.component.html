@@ -2,8 +2,8 @@
     <div class="header__container container">
         <app-logo></app-logo>
 
-        <div *ngIf="authService.isAuthenticated" class="header__login">
-            <span class="header__login-user">{{userName | async}}</span>
+        <div *ngIf="isAuthenticated$ | async" class="header__login">
+            <span class="header__login-user">{{userName$ | async}}</span>
             <button
                 (click)="logout()"
                 type="button"

@@ -21,6 +21,10 @@ import { DurationFieldComponent } from './components/duration-field/duration-fie
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TokenInterceptor } from './interceptors/auth.interceptor';
 import { LoadingComponent } from './components/loading/loading.component';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {appReducers} from './store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -44,8 +48,10 @@ import { LoadingComponent } from './components/loading/loading.component';
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+      StoreModule.forRoot(appReducers),
+      !environment.production ? StoreDevtoolsModule.instrument() : [],
+      AppRoutingModule,
   ],
   providers: [
       FilterPipe,

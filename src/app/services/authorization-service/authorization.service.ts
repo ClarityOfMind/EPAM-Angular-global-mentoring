@@ -1,43 +1,46 @@
 import { Injectable } from '@angular/core';
 import { Authorization } from '../../interfaces/authorization';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
 import {User} from '../../interfaces/user';
+import {map, switchMap} from 'rxjs/operators';
+import {State, Store} from '@ngrx/store';
+import {AppState} from '../../store/app.reducers';
+import {ClearAuth, SetAuthToken, SetAuthUser} from '../../store/auth.actions';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthorizationService {
-    public token: string;
-
     constructor(
         private http: HttpClient,
-    ) {
-        this.token = localStorage.getItem('token');
+        private store: Store<AppState>,
+        private state: State<AppState>,
+    ) { }
+
+    public login(auth: Authorization): Observable<User> {
+        return this.http
+            .post<any>('http://localhost:3004/auth/login', auth)
+            .pipe(
+                switchMap(data => {
+                    this.store.dispatch(new SetAuthToken(data.token));
+                    return this.getUserInfo();
+                })
+            );
     }
 
-    public login(auth: Authorization): void {
-        this.http.post('http://localhost:3004/auth/login', auth)
-            .subscribe((data: any) => {
-                this.token = data.token;
-                localStorage.setItem('token', this.token);
-            });
-    }
-
-    public logout(): void {
-        this.token  = null;
-        localStorage.removeItem('token');
+    public logout() {
+        this.store.dispatch(new ClearAuth());
     }
 
     public getUserInfo(): Observable<User> {
-        if (!this.token) {
-            return of(null);
-        }
         return this.http
-            .post<User>('http://localhost:3004/auth/userinfo', {token: this.token});
-    }
-
-    public get isAuthenticated(): boolean {
-        return !!this.token;
+            .post<User>('http://localhost:3004/auth/userinfo', {token: this.state.getValue().auth.token})
+            .pipe(
+                map(user => {
+                    this.store.dispatch(new SetAuthUser(user));
+                    return user;
+                })
+            );
     }
 }
