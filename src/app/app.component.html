@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-    <app-loading *ngIf="loadingService.loading$ | async"></app-loading>
+    <app-loading *ngIf="loading"></app-loading>
     <router-outlet></router-outlet>
 </main>
 <app-footer></app-footer>
