@@ -3,7 +3,10 @@ import { Course } from 'src/app/interfaces/course';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoadingService} from '../loading.service';
-import {finalize} from 'rxjs/operators';
+import {finalize, map} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/app.reducers';
+import {getCourses} from '../../store/course-reducer/course.actions';
 
 const URL = 'http://localhost:3004/courses';
 
@@ -14,14 +17,17 @@ export class CourseService {
     constructor(
         private http: HttpClient,
         private loadingService: LoadingService,
+        private store: Store<AppState>,
     ) { }
 
-    public getList(count: number): Observable<any> {
+    public getList(count: number): void {
         this.loadingService.showLoading();
-        return this.http.get(`${URL}?start=0&count=${count}`)
+        this.http.get(`${URL}?start=0&count=${count}`)
             .pipe(
+                map(courses => this.store.dispatch(getCourses({list: courses}))),
                 finalize(() => this.loadingService.hideLoading()),
-            );
+            )
+            .subscribe();
     }
 
     public createCourse(course: Course): Observable<any> {
@@ -56,7 +62,11 @@ export class CourseService {
             );
     }
 
-    public search(text: string): Observable<any> {
-        return this.http.get(`${URL}?textFragment=${text}`);
+    public search(text: string): void {
+        this.http.get(`${URL}?textFragment=${text}`)
+            .pipe(
+                map(courses => this.store.dispatch(getCourses({list: courses}))),
+            )
+            .subscribe();
     }
 }

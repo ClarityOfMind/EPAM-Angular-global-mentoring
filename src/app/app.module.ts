@@ -27,40 +27,40 @@ import {environment} from '../environments/environment';
 import {appReducers} from './store/app.reducers';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    LogoComponent,
-    CoursesPageComponent,
-    BreadcrumbsComponent,
-    CourseSearchComponent,
-    CourseItemComponent,
-    HighlightDirective,
-    DurationPipe,
-    FilterPipe,
-    LoginPageComponent,
-    CourseCreatorComponent,
-    DurationFieldComponent,
-    PageNotFoundComponent,
-    LoadingComponent,
-  ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    HttpClientModule,
-      StoreModule.forRoot(appReducers),
-      !environment.production ? StoreDevtoolsModule.instrument() : [],
-      AppRoutingModule,
-  ],
-  providers: [
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        LogoComponent,
+        CoursesPageComponent,
+        BreadcrumbsComponent,
+        CourseSearchComponent,
+        CourseItemComponent,
+        HighlightDirective,
+        DurationPipe,
+        FilterPipe,
+        LoginPageComponent,
+        CourseCreatorComponent,
+        DurationFieldComponent,
+        PageNotFoundComponent,
+        LoadingComponent,
+    ],
+    imports: [
+        FormsModule,
+        BrowserModule,
+        HttpClientModule,
+        StoreModule.forRoot(appReducers),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        AppRoutingModule,
+    ],
+    providers: [
       FilterPipe,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: TokenInterceptor,
         multi: true,
       },
-  ],
-  bootstrap: [AppComponent]
-})
+    ],
+    bootstrap: [AppComponent]
+    })
 export class AppModule { }
