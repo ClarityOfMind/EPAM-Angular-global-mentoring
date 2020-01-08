@@ -30,6 +30,10 @@ export class CourseService {
             .subscribe();
     }
 
+    public getAuthors(): Observable<any> {
+        return this.http.get('http://localhost:3004/authors');
+    }
+
     public createCourse(course: Course): Observable<any> {
         this.loadingService.showLoading();
         return this.http.post(`${URL}`, course)

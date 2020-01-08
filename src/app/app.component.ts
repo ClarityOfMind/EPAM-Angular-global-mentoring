@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe(loading => {
                 this.loading = loading;
 
-                //Без этого будет ошибка "Expression has changed after it was checked...."
+                // Без этого будет ошибка "Expression has changed after it was checked...."
                 this.cdRef.detectChanges();
             });
 

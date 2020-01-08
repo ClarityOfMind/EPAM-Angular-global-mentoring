@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,9 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {appReducers} from './store/app.reducers';
+import {DateFieldComponent} from './components/date-field/date-field.component';
+import { FormFieldComponent } from './components/form-field/form-field.component';
+import { AuthorsFieldComponent } from './components/authors-field/authors-field.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +47,9 @@ import {appReducers} from './store/app.reducers';
         DurationFieldComponent,
         PageNotFoundComponent,
         LoadingComponent,
+        DateFieldComponent,
+        FormFieldComponent,
+        AuthorsFieldComponent,
     ],
     imports: [
         FormsModule,
@@ -52,14 +58,15 @@ import {appReducers} from './store/app.reducers';
         StoreModule.forRoot(appReducers),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         AppRoutingModule,
+        ReactiveFormsModule,
     ],
     providers: [
-      FilterPipe,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptor,
-        multi: true,
-      },
+        FilterPipe,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true,
+        },
     ],
     bootstrap: [AppComponent]
     })

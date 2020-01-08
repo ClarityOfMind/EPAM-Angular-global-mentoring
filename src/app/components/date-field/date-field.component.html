@@ -1,0 +1,21 @@
+<div class="form__field form__field--short">
+    <label class="required" for="date">Date:</label>
+    <span
+        *ngIf="control.invalid && control.touched"
+        class="form__field__invalid-message"
+    >
+        <span *ngIf="control.errors.required">This field is required</span>
+        <span *ngIf="control.errors.pattern">Wrong date format</span>
+    </span>
+    <input
+        [ngClass]="{'form__field--invalid': control.invalid && control.touched }"
+        (input)="onInput(date.value)"
+        (blur)="onFormControlTouched()"
+        id="date"
+        type="text"
+        placeholder="yyyy-mm-dd"
+        title="date"
+        name="date"
+        #date
+    >
+</div>

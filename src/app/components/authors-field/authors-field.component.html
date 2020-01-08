@@ -1,0 +1,23 @@
+<div class="form__field form__field--medium">
+    <label class="required" for="authors">Authors:</label>
+    <div>
+        <input
+            id="authors"
+            type="text"
+            placeholder="Start typing"
+            name="authors"
+        >
+        <ng-container *ngTemplateOutlet="authorsDropdown"></ng-container>
+    </div>
+</div>
+
+<ng-template #authorsDropdown>
+    <ul class="authors-field__dropdown">
+       <li
+            *ngFor="let author of authors$ | async"
+            class="authors-field__dropdown-item"
+       >
+           <button (click)="addAuthor(author)">{{author.name}}</button>
+       </li>
+    </ul>
+</ng-template>

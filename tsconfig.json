@@ -1,12 +1,7 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {
-      "@interfaces/*": ["app/interfaces/*"],
-      "@components/*": ["app/components/*"],
-      "@servises/*": ["app/servises/*"],
-    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
