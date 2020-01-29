@@ -4,6 +4,7 @@ import { CourseService } from 'src/app/services/course-service/course-service.se
 import {ActivatedRoute, Router} from '@angular/router';
 import {Breadcrumbs} from '../../interfaces/breadcrumbs';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-course-creator',
@@ -12,10 +13,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
     encapsulation: ViewEncapsulation.None,
 })
 export class CourseCreatorComponent implements OnInit {
-    public course: Course;
+    public course: Course ;
     public id: number;
     public breadcrumbs: Breadcrumbs[];
-    public form: FormGroup;
+    public courseForm: FormGroup;
     public name: FormControl;
 
     get title(): string {
@@ -56,31 +57,27 @@ export class CourseCreatorComponent implements OnInit {
                 .subscribe(array => {
                     console.log(array)
                     this.course = array[0];
+                    this.initForm();
                 });
+        } else {
+            this.initForm();
         }
-
-        this.initForm();
-
-        // this.form = new FormGroup({
-        //     title: new FormControl(this.course.name, [Validators.maxLength(50), Validators.required]),
-        //     description: new FormControl(this.course.description, [Validators.maxLength(500), Validators.required]),
-        //     length: new FormControl(this.course.length, [Validators.required]),
-        //     date: new FormControl(this.course.date, [Validators.pattern(/^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/), Validators.required]),
-        //     authors: new FormControl(this.course.authors, [Validators.required]),
-        // });
     }
 
     public save(): void {
-        console.log(this.form);
-        // if (!this.id) {
-        //     this.courseService.createCourse(this.course).subscribe(
-        //         () => this.router.navigate(['courses-page'])
-        //     );
-        // } else {
-        //     this.courseService.updateItem(this.course).subscribe(
-        //         () => this.router.navigate(['courses-page'])
-        //     );
-        // }
+        if (this.courseForm.valid) {
+            const course = Object.assign({id: this.course.id || this.id}, this.courseForm.value);
+
+            if (!this.id) {
+                this.courseService.createCourse(course).subscribe(
+                    () => this.router.navigate(['courses-page'])
+                );
+            } else {
+                this.courseService.updateItem(course).subscribe(
+                    () => this.router.navigate(['courses-page'])
+                );
+            }
+        }
     }
 
     public cancel(): void {
@@ -88,11 +85,11 @@ export class CourseCreatorComponent implements OnInit {
     }
 
     private initForm(): void {
-        this.form = this.fb.group({
-            title: [this.course.name, [Validators.maxLength(50), Validators.required]],
+        this.courseForm = this.fb.group({
+            name: [this.course.name, [Validators.maxLength(50), Validators.required]],
             description: [this.course.description, [Validators.maxLength(500), Validators.required]],
             length: [this.course.length, [Validators.required]],
-            date: [this.course.date, [Validators.pattern(/^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/), Validators.required]],
+            date: [this.course.date ? moment(this.course.date).format('YYYY-MM-DD') : '', [Validators.pattern(/^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/), Validators.required]],
             authors: [this.course.authors, [Validators.required]],
         });
     }

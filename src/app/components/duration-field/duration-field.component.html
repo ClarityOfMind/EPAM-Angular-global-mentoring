@@ -7,6 +7,7 @@
        <span>This field is required</span>
     </span>
     <input
+        [ngModel]="control.value"
         [ngClass]="{'form__field--invalid': control.invalid && control.touched }"
         (input)="onInput(+duration.value)"
         (blur)="onFormControlTouched()"

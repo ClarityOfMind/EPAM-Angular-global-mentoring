@@ -8,6 +8,7 @@
         <span *ngIf="control.errors.pattern">Wrong date format</span>
     </span>
     <input
+        [(ngModel)]="model"
         [ngClass]="{'form__field--invalid': control.invalid && control.touched }"
         (input)="onInput(date.value)"
         (blur)="onFormControlTouched()"

@@ -1,10 +1,78 @@
 .authors-field {
-    &__dropdown {
-        list-style-type: none;
-    }
+    padding-left: 12px;
+    border-radius: 3px;
+    border: 1px solid var(--light-gray);
 
-    &__dropdown-item {
-        min-width: inherit;
-    }
+    ng-select.ng-select {
+        input {
+            height: auto;
+        }
+        .ng-dropdown-panel-items {
+            z-index: 1000;
+            max-height: 338px;
+            font-size: 14px;
+            text-align: left;
+            list-style: none;
+            background-color: var(--white);
+            background-clip: padding-box;
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        }
 
+        .ng-placeholder {
+            color: var(--silver);
+            font-size: 14px;
+        }
+
+        .ng-has-value .ng-placeholder{
+            display: none;
+        }
+
+        .ng-select .ng-clear-wrapper .ng-clear {
+            visibility: hidden;
+        }
+
+        &.ng-select-multiple .ng-select-container .ng-value-container .ng-input {
+            width: 100%;
+            flex: none;
+        }
+
+        .ng-select.ng-select-opened.ng-select-single {
+            .ng-has-value .ng-placeholder {
+                display: block;
+            }
+
+            &.ng-select-filtered .ng-placeholder,
+            .ng-select-container .ng-value-container .ng-value {
+                display: none;
+            }
+        }
+
+        .label {
+            display: inline-flex;
+            border: none;
+            padding: 3px 8px 3px 7px;
+            background-color: var(--slate-gray);
+            color: var(--white);
+            border-radius: 0;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+            margin-right: 3px;
+            max-width: 100%;
+        }
+
+        .clear::before {
+            margin-left: 5px;
+            background: url('/assets/icons/times-circle-solid.svg')
+            background-repeat: no-repeat;
+            background-position: center;
+            color: var(--white);
+            content: "";
+            padding-left: 10px;
+            cursor: pointer;
+        }
+    }
 }

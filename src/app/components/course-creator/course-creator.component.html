@@ -1,38 +1,38 @@
 <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 <div class="course-creator">
     <h2 class="course-creator__title">{{title}}</h2>
-    <form [formGroup]="form" (ngSubmit)="save()" class="form">
+    <form [formGroup]="courseForm" (ngSubmit)="save()" class="form" *ngIf="courseForm">
         <div class="form__field">
-            <label class="required" for="title">Title:</label>
+            <label class="required" for="name">Title:</label>
             <span
-                *ngIf="form.controls.title.invalid && form.controls.title.touched"
+                *ngIf="courseForm.controls.name.invalid && courseForm.controls.name.touched"
                 class="form__field__invalid-message"
             >
-                <span *ngIf="form.controls.title.errors.required">This field is required</span>
-                <span *ngIf="form.controls.title.errors.maxlength">Max length exceeded. Only 50 symbols are allowed</span>
+                <span *ngIf="courseForm.controls.name.errors.required">This field is required</span>
+                <span *ngIf="courseForm.controls.name.errors.maxlength">Max length exceeded. Only 50 symbols are allowed</span>
             </span>
             <input
-                [ngClass]="{'form__field--invalid': form.controls.title.invalid && form.controls.title.touched }"
-                formControlName="title"
+                [ngClass]="{'form__field--invalid': courseForm.controls.name.invalid && courseForm.controls.name.touched }"
+                formControlName="name"
                 class="input"
-                id="title"
+                id="name"
                 type="text"
-                placeholder="Add title"
-                name="title"
+                placeholder="Add name"
+                name="name"
             >
         </div>
 
         <div class="form__field">
             <label class="required" for="description">Description:</label>
             <span
-                *ngIf="form.controls.description.invalid && form.controls.description.touched"
+                *ngIf="courseForm.controls.description.invalid && courseForm.controls.description.touched"
                 class="form__field__invalid-message"
             >
-                <span *ngIf="form.controls.description.errors.required">This field is required</span>
-                <span *ngIf="form.controls.description.errors.maxlength">Max length exceeded. Only 500 symbols are allowed</span>
+                <span *ngIf="courseForm.controls.description.errors.required">This field is required</span>
+                <span *ngIf="courseForm.controls.description.errors.maxlength">Max length exceeded. Only 500 symbols are allowed</span>
             </span>
             <textarea
-                [ngClass]="{'form__field--invalid': form.controls.description.invalid && form.controls.description.touched }"
+                [ngClass]="{'form__field--invalid': courseForm.controls.description.invalid && courseForm.controls.description.touched }"
                 formControlName="description"
                 rows="6"
                 id="description"
@@ -44,17 +44,17 @@
 
         <app-duration-field
             formControlName="length"
-            [control]="form.controls.length"
+            [control]="courseForm.controls.length"
         ></app-duration-field>
 
         <app-date-field
             formControlName="date"
-            [control]="form.controls.date"
+            [control]="courseForm.controls.date"
         ></app-date-field>
 
         <app-authors-field
             formControlName="authors"
-            [control]="form.controls.authors"
+            [control]="courseForm.controls.authors"
         ></app-authors-field>
 
         <div class="course-creator__buttons">

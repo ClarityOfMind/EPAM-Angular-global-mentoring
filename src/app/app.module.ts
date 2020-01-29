@@ -28,6 +28,7 @@ import {appReducers} from './store/app.reducers';
 import {DateFieldComponent} from './components/date-field/date-field.component';
 import { FormFieldComponent } from './components/form-field/form-field.component';
 import { AuthorsFieldComponent } from './components/authors-field/authors-field.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { AuthorsFieldComponent } from './components/authors-field/authors-field.
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         AppRoutingModule,
         ReactiveFormsModule,
+        NgSelectModule
     ],
     providers: [
         FilterPipe,

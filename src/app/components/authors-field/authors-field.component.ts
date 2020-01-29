@@ -19,7 +19,6 @@ import {Observable} from 'rxjs';
     ],
 })
 export class AuthorsFieldComponent extends FormFieldComponent<Author[]> implements OnInit {
-    @Input() authorsList: Author[];
 
     public authors$: Observable<Author[]>;
 
@@ -37,6 +36,4 @@ export class AuthorsFieldComponent extends FormFieldComponent<Author[]> implemen
     public getAuthors(): Observable<Author[]> {
         return this.courseService.getAuthors();
     }
-
-    public addAuthor(author: Author): void {}
 }

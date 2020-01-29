@@ -16,8 +16,6 @@ export class FormFieldComponent<T = any> implements ControlValueAccessor {
 
     public writeValue(value: T): void {
         this.model = value;
-        console.log('value: ', value);
-        console.log('model: ', this.model);
     }
 
     public registerOnChange(fn: any): void {
@@ -29,9 +27,7 @@ export class FormFieldComponent<T = any> implements ControlValueAccessor {
     }
 
     public onInput(value: T): void {
-        console.log(this.control);
         this.model = value;
         this.onFormModelChange(value);
     }
-
 }
