@@ -44,17 +44,18 @@
 
         <app-duration-field
             formControlName="length"
-            [control]="courseForm.controls.length"
+            [isInvalid]="courseForm.controls.length.invalid && courseForm.controls.length.touched"
         ></app-duration-field>
 
         <app-date-field
             formControlName="date"
-            [control]="courseForm.controls.date"
+            [isInvalid]="courseForm.controls.date.invalid && courseForm.controls.date.touched"
+            [errors]="courseForm.controls.date.errors"
         ></app-date-field>
 
         <app-authors-field
             formControlName="authors"
-            [control]="courseForm.controls.authors"
+            [isInvalid]="courseForm.controls.authors.invalid && courseForm.controls.authors.touched"
         ></app-authors-field>
 
         <div class="course-creator__buttons">

@@ -7,7 +7,8 @@ import {ControlValueAccessor, FormControl} from '@angular/forms';
   styleUrls: ['./form-field.component.styl']
 })
 export class FormFieldComponent<T = any> implements ControlValueAccessor {
-    @Input() control: FormControl;
+    @Input() isInvalid: boolean;
+    @Input() errors?: any;
 
     public model: T;
 

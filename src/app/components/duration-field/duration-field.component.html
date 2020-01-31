@@ -1,20 +1,20 @@
 <div class="form__field form__field--short">
     <label class="required" for="duration">Duration:</label>
     <span
-        *ngIf="control.invalid && control.touched"
+        *ngIf="isInvalid"
         class="form__field__invalid-message"
     >
        <span>This field is required</span>
     </span>
     <input
-        [ngModel]="control.value"
-        [ngClass]="{'form__field--invalid': control.invalid && control.touched }"
-        (input)="onInput(+duration.value)"
+        [(ngModel)]="model"
+        [ngClass]="{'form__field--invalid': isInvalid }"
+        (input)="onInput(model)"
         (blur)="onFormControlTouched()"
         id="duration"
         type="number"
         placeholder="minutes"
-        #duration
+        name="length"
     >
     <span *ngIf="model" class="duration-field__aside-widget">{{ model | duration}}</span>
 </div>
